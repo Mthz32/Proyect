@@ -10,12 +10,10 @@ public class MovementController : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
-			Plane aux_plane = new Plane(Vector3.up, this.transform.position);
-	  	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			float dist = 0f;
-			if (aux_plane.Raycast(ray, out dist)){
-				Vector3 target_point = ray.GetPoint(dist);
-				player.SetDestination(target_point);
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit)){
+				player.SetDestination(hit.point);
 			}
 		}
 	}
