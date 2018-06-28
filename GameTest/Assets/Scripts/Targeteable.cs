@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Targeteable : MonoBehaviour {
 
-	// private int hp = 1000;
-	// private float def = 0.4f;
+	private float hp = 1000;
+	private float def = 0.4f;
 
 	// Use this for initialization
-	void Start () {
-
+	public bool TakeDmg(float dmg){
+		hp -= ((1 - def) * dmg);
+		if (hp <= 0){
+			Destroy(this.gameObject);
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }
